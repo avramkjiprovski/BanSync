@@ -7,10 +7,12 @@ client.on('ready', () => {
 });
 
 client.on("guildBanAdd", function(guild, user){
+        
         client.guilds.cache.map((guild) => {
             guild.fetchBan(user).then((user)=>{
-                console.log(`${user.user.username} is already banned`)
-            },()=>{
+                // console.log(`${user.user.username} is already banned in ${guild.name} for ${user.reason}`)
+            },
+            ()=>{
                 guild.members.ban(user.id)
                 .then(user => console.log(`Banned ${user.username || user.id || user} from ${guild.name}`), error => console.log(error))
             })
@@ -30,7 +32,7 @@ client.on("guildBanRemove", function(guild, user){
                     error => console.log("error:", error)
                 )
         },()=>{
-            console.log(`\n${user.username} is not banned in ${guild.name}`)
+            // console.log(`${user.username} is not banned in ${guild.name}`)
         })
     })
 })

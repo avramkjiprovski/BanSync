@@ -15,11 +15,12 @@ client.on("guildBanAdd", function(guild, user){
             },
             ()=>{
                 guild.members.ban(user.id, {reason: reason})
-                .then(user => console.log(`Banned ${user.username || user.id || user} from ${guild.name} for "${reason}"`), error => console.log(error))
+                .then(
+                    user => console.log(`Banned ${user.username || user.id || user} from ${guild.name} for "${reason}"`), 
+                    error => console.log(error)
+                )
             })
         })
-
-
 })
 
 client.on("guildBanRemove", function(guild, user){
